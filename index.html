@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <header class="navbar navbar-light bg-dark text-center">
+        <h1 class="navbar-brand col-md-12" id=title >Weather Forecast</h1>
+    </header>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h4>Search for a City</h4>
+                <form class="form-inline ">
+                    <input class="form-control" id="search-input" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary  fas fa-search" id="search-button" type="submit"></button>
+                  </form>
+            </div>
+    
+            <ul class="list-unstyled components" id="search-history">
+                
+            </ul>
+        </nav>
+
+        <!-- Content -->
+
+        <div class="main-content" id="current-city">
+
+        </div>
+        <hr>
+        <div id=forecast-list></div>
+    
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+    <script src="./program.js"></script>
+
+</body>
+
+</html>
