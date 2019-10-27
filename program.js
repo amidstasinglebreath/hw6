@@ -56,14 +56,17 @@ function displayMain(searchResp) {
     class: "wind",
     appendTo: "#current-city"
   })
+
+  //attempt at icon display
   var icon = $("<div>");
   icon.addClass("icon")
 
   // call point of getUV
   var lat = searchResp.coord.lat;
   var lon = searchResp.coord.lon;
-  getUV(searchResp.coord.lat,searchResp.coord.lon);
+  getUV(searchResp.coord.lat, searchResp.coord.lon);
 
+  //attempt at overwritting 
   var weatherType = searchResp.weather.main;
 
   if (weatherType === "Clear") {
@@ -82,6 +85,18 @@ function displayMain(searchResp) {
     icon.addClass("fas fa-cloud-showers-heavy");
   }
 
+
+  //Adjusting sidebar:
+  searchHistory = JSON.parse(localStorage.getItem("Previous Searches"));
+  $("#search-history").empty();
+  for (var i = 0; i < searchHistory.length; i++){
+    var histItem = $("<a>");
+    histItem.addClass("list-group-item list-group-item-action list-group-item-dark");
+    histItem.text(searchHistory[i]);
+    $("#search-history").append(histItem);
+
+  }
+
 }
 
 
@@ -90,7 +105,7 @@ function displayForecast(searchResp) {
 
   for (var i = 1; i < 6; i++) {
     const date = moment().add(i, 'days').format("M/D/YYYY");
-    
+
     var curDayDiv = $("<div class=day>");
     var divDate = $("<h3>");
     divDate.html(date);
@@ -108,25 +123,25 @@ function displayForecast(searchResp) {
     var weatherType = searchResp.list[i].weather[0].main;
 
     if (weatherType === "Clear")
-        icon.addClass("fas fa-sun weatherIcon");
+      icon.addClass("fas fa-sun weatherIcon");
 
     else if (weatherType === "Clouds")
-        icon.addClass("fas fa-cloud weatherIcon");
+      icon.addClass("fas fa-cloud weatherIcon");
 
     else if (weatherType === "Snow")
-        icon.addClass("fas fa-snowflake weatherIcon");
+      icon.addClass("fas fa-snowflake weatherIcon");
 
     else if (weatherType === "Drizzle")
-        icon.addClass("fas fa-cloud-rain weatherIcon");
+      icon.addClass("fas fa-cloud-rain weatherIcon");
 
     else if (weatherType === "Rain")
-        icon.addClass("fas fa-cloud-showers-heavy weatherIcon");
-}
+      icon.addClass("fas fa-cloud-showers-heavy weatherIcon");
+  }
 }
 
 // get function that returns UV
 function getUV(lat, lon) {
-  var queryURL = baseUrl + "uvi?&lon=" + lon + "&lat=" + lat +  "&appid=" + apikey;
+  var queryURL = baseUrl + "uvi?&lon=" + lon + "&lat=" + lat + "&appid=" + apikey;
 
   $.ajax({
     url: queryURL,
@@ -177,11 +192,9 @@ function search(cityName) {
       console.log("Temperature (F): " + response.main.temp);
 
       displayMain(response);
-      //save function call
-      saveHistory(cityName);
 
       $.ajax({
-        url: baseUrl + "forecast?q="+ cityName + "&appid=" + apikey + "&units=imperial",
+        url: baseUrl + "forecast?q=" + cityName + "&appid=" + apikey + "&units=imperial",
         method: "GET"
       })
         // We store all of the retrieved data inside of an object called "response"
@@ -202,8 +215,17 @@ $("#search-button").on("click", function (event) {
   event.preventDefault();
   var city = $("#search-input").val();
   search(city);
+  //save function call
+  saveHistory(city);
 })
 
 
 
 //onclick register history
+$(".list-group-item").on("click", function (event) {
+  event.preventDefault();
+  var city = $(this).text();
+  search(city);
+  //save function call
+  saveHistory(city);
+})

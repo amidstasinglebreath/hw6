@@ -65,7 +65,13 @@
 }
 
 .icon {
+    color: aqua;
     display: inline-block;
     font-size: 30px;
     padding-left: 10px;
+}
+
+.list-group-item {
+    text-align: center;
+    color: black;
 }

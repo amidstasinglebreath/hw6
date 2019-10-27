@@ -7,8 +7,10 @@ Create a usable weather tracking application that displays current weather condi
 ### Development notes:
 Currently unable to display an Icon in the main display despite similar code working for the forecast functions
     attempting to fix by altering nature of icons to match more closely
-    
+
 Issue with UV index fixed, lattitude marker in the query url did not have an "=" sign 
+
+Save and load from localstorage, cannot display on click, likely problem with "this"
 
 
 # Unit 06 Server-Side APIs Homework: Weather Dashboard
