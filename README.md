@@ -1,11 +1,14 @@
 # hw6
 
 ## Purpose:
-
+Create a usable weather tracking application that displays current weather conditions, a 5 day forecast and saves a history of previous searches
 
 
 ### Development notes:
-
+Currently unable to display an Icon in the main display despite similar code working for the forecast functions
+    attempting to fix by altering nature of icons to match more closely
+Currently unable to display UV index, display works when hardcoded, something about my input is faulty
+    likely 
 
 
 # Unit 06 Server-Side APIs Homework: Weather Dashboard

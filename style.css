@@ -17,6 +17,7 @@
     min-width: 300px;
     max-width: 300px;
     min-height: 100vh;
+    height: 100%;
     background: rgb(200, 211, 255);
     color: #fff;
     transition: all 0.3s;
@@ -34,4 +35,37 @@
     #sidebar.active {
         margin-left: 0;
     }
+}
+
+.col-md {
+    margin-left: 30%;
+}
+
+#current-city {
+    padding: 20px;
+    margin: 30px 10px 30px 0;
+    width: 100%;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+#forecast-list {
+    background: #222844;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 20px 0 0;
+    display: inline-block;
+    width: 200px;
+}
+
+.day {
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
+
+.icon {
+    display: inline-block;
+    font-size: 30px;
+    padding-left: 10px;
 }
