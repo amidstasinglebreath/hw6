@@ -87,15 +87,7 @@ function displayMain(searchResp) {
 
 
   //Adjusting sidebar:
-  searchHistory = JSON.parse(localStorage.getItem("Previous Searches"));
-  $("#search-history").empty();
-  for (var i = 0; i < searchHistory.length; i++){
-    var histItem = $("<a>");
-    histItem.addClass("list-group-item list-group-item-action list-group-item-dark");
-    histItem.text(searchHistory[i]);
-    $("#search-history").append(histItem);
-
-  }
+  loadPrev();
 
 }
 
@@ -229,3 +221,17 @@ $(".list-group-item").on("click", function (event) {
   //save function call
   saveHistory(city);
 })
+
+function loadPrev(){
+  searchHistory = JSON.parse(localStorage.getItem("Previous Searches"));
+  $("#search-history").empty();
+  for (var i = 0; i < searchHistory.length; i++){
+    var histItem = $("<a>");
+    histItem.addClass("list-group-item list-group-item-action list-group-item-dark");
+    histItem.text(searchHistory[i]);
+    $("#search-history").append(histItem);
+
+  }
+}
+
+loadPrev();
