@@ -58,10 +58,11 @@ function displayMain(searchResp) {
   })
   var icon = $("<div>");
   icon.addClass("icon")
+
   // call point of getUV
-  //  var lat = searchResp.coord.lat;
-  //var lon = searchResp.coord.lon;
-  //getUV(searchResp.coord.lat,searchResp.coord.lon);
+  var lat = searchResp.coord.lat;
+  var lon = searchResp.coord.lon;
+  getUV(searchResp.coord.lat,searchResp.coord.lon);
 
   var weatherType = searchResp.weather.main;
 
@@ -125,7 +126,7 @@ function displayForecast(searchResp) {
 
 // get function that returns UV
 function getUV(lat, lon) {
-  var queryURL = baseUrl + "uvi?&lon=" + lon + "&lat" + lat +  "&appid=" + apikey;
+  var queryURL = baseUrl + "uvi?&lon=" + lon + "&lat=" + lat +  "&appid=" + apikey;
 
   $.ajax({
     url: queryURL,
@@ -137,17 +138,19 @@ function getUV(lat, lon) {
 
       var uvDiv = $("<div>");
       uvDiv.html("UV Index: ");
-      var uv = $("<h4>");
+      var uv = $("<span>");
+      uv.addClass("badge");
       uv.html(uvResponse.value);
+
+      if (uvResponse.value < 6) {
+        uv.addClass("badge-success");
+      } else {
+        uv.addClass("badge-danger")
+      }
 
       uvDiv.append(uv);
       $("#current-city").append(uvDiv);
 
-      if (uvResponse.value < 6) {
-        uv.addClass("uvIndexLow");
-      } else {
-        uv.addClass("uvIndex")
-      }
     });
 }
 
