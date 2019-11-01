@@ -1,6 +1,7 @@
 //pseudo-constants
 var apikey = "e4abe5a765b55cc4973d535c01929241"
 var baseUrl = "https://api.openweathermap.org/data/2.5/";
+var lsKey = "Previous Searches";
 
 //&appid=" + apikey
 // &units=imperial
@@ -214,8 +215,9 @@ $("#search-button").on("click", function (event) {
 
 
 //onclick register history
-$(".list-group-item").on("click", function (event) {
+$(document).on("click", ".cityButton", function (event) {
   event.preventDefault();
+  console.log($(this).text());
   var city = $(this).text();
   search(city);
   //save function call
@@ -223,15 +225,22 @@ $(".list-group-item").on("click", function (event) {
 })
 
 function loadPrev(){
-  searchHistory = JSON.parse(localStorage.getItem("Previous Searches"));
-  $("#search-history").empty();
-  for (var i = 0; i < searchHistory.length; i++){
-    var histItem = $("<a>");
-    histItem.addClass("list-group-item list-group-item-action list-group-item-dark");
-    histItem.text(searchHistory[i]);
-    $("#search-history").append(histItem);
 
-  }
+  var setStatus = localStorage.getItem("Status");
+    if (setStatus === null){
+      searchHistory = JSON.parse(localStorage.getItem("Previous Searches"));
+      $("#search-history").empty();
+      for (var i = 0; i < searchHistory.length; i++){
+        var histItem = $("<button>");
+        histItem.addClass("list-group-item list-group-item-action list-group-item-dark");
+        histItem.addClass("cityButton");
+        histItem.text(searchHistory[i]);
+        $("#search-history").append(histItem);
+    
+      }
+    }
+
+  // hw5 set
 }
 
 loadPrev();
