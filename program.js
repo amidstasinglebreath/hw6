@@ -26,6 +26,7 @@ function saveHistory(cityEntry) {
   }
 
   localStorage.setItem("Previous Searches", JSON.stringify(searchHistory));
+  loadPrev();
 }
 
 
