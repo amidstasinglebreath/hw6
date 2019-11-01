@@ -224,23 +224,25 @@ $(document).on("click", ".cityButton", function (event) {
   saveHistory(city);
 })
 
-function loadPrev(){
+function loadPrev() {
 
   var setStatus = localStorage.getItem("Status");
-    if (setStatus === null){
-      searchHistory = JSON.parse(localStorage.getItem("Previous Searches"));
-      $("#search-history").empty();
-      for (var i = 0; i < searchHistory.length; i++){
-        var histItem = $("<button>");
-        histItem.addClass("list-group-item list-group-item-action list-group-item-dark");
-        histItem.addClass("cityButton");
-        histItem.text(searchHistory[i]);
-        $("#search-history").append(histItem);
-    
-      }
-    }
+  if (setStatus != null) {
+    searchHistory = JSON.parse(localStorage.getItem("Previous Searches"));
+    $("#search-history").empty();
+    for (var i = 0; i < searchHistory.length; i++) {
+      var histItem = $("<button>");
+      histItem.addClass("list-group-item list-group-item-action list-group-item-dark");
+      histItem.addClass("cityButton");
+      histItem.text(searchHistory[i]);
+      $("#search-history").append(histItem);
 
-  // hw5 set
+    }
+  } else {
+    setStatus = "Saved";
+    localStorage.setItem("Status", setStatus);
+  }
+
 }
 
 loadPrev();
